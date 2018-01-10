@@ -8,3 +8,9 @@ At 7:20, I always send message my children to the kindergarten, and give advice 
 There was a heavy traffic jam on the way home at 20:00 at night, and suggested taking another route.
 The car is going to run out of gas, and it is suggested that we go to the nearest economic discount gas station.
 There is a new children's park near my home on Saturday, which is suggested to take my children to the amusement park.
+
+
+
+
+Run  command 'npm install' in the project root directory for the first time.
+
