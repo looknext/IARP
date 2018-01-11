@@ -94,8 +94,8 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         applicationId "com.nativebasekitchensink"
@@ -107,10 +107,7 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
-        manifestPlaceholders = [
-                JPUSH_APPKEY: "96a7a0dc95f81279a85f89f5",   //在此替换你的APPKey
-                APP_CHANNEL: "developer-default"        //应用渠道号
-        ]
+
     }
     splits {
         abi {
@@ -142,11 +139,12 @@ android {
 }
 
 dependencies {
-    compile project(':jpush-react-native')
-    compile project(':jcore-react-native')
+    compile project(':reactamaplocation')
+    compile project(':react-native-mqtt')
+
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
+    compile "com.android.support:appcompat-v7:26.0.2"
     compile "com.facebook.react:react-native:+"  // From node_modules
 }
 

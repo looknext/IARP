@@ -1,21 +1,21 @@
 package com.nativebasekitchensink;
 
 import android.app.Application;
+import com.tuanpm.RCTMqtt.*; // import
 
 import com.facebook.react.ReactApplication;
-import cn.jpush.reactnativejpush.JPushPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.xiaobu.amap.AMapLocationReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
-  private boolean SHUTDOWN_TOAST = false;
-  private boolean SHUTDOWN_LOG = false;
+
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     public boolean getUseDeveloperSupport() {
@@ -26,8 +26,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new JPushPackage(SHUTDOWN_TOAST, SHUTDOWN_LOG),
-            new VectorIconsPackage()
+            new VectorIconsPackage(),
+              new AMapLocationReactPackage(), // <-- Register package here
+              new RCTMqttPackage()           // for newest version of react-native
+
+
+
       );
     }
 

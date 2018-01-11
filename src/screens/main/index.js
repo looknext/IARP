@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import JPushModule from 'jpush-react-native';
+import AMapLocation from 'react-native-amap-location';
 
 
 import {
@@ -20,7 +20,7 @@ import styles from "./styles";
 class Main extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       tab1: false,
       tab2: false,
@@ -28,14 +28,7 @@ class Main extends Component {
       tab4: false
     };
   }
-    componentDidMount() {
-        JPushModule.addReceiveNotificationListener((map) => {
-            console.log("alertContent: " + map.alertContent);
-            console.log("extras: " + map.extras);
-            // var extra = JSON.parse(map.extras);
-            // console.log(extra.key + ": " + extra.value);
-        });
-    }
+
   toggleTab1(){
     this.setState({
       tab1: true,
@@ -68,6 +61,21 @@ class Main extends Component {
       tab4: true
     });
   }
+  componentDidMount() {
+  this.unlisten = AMapLocation.addEventListener((data) => console.log('data', data));
+  AMapLocation.startLocation({
+    accuracy: 'HighAccuracy',
+    killProcess: true,
+    needDetail: true,
+  });
+}
+
+componentWillUnmount() {
+  AMapLocation.stopLocation();
+  this.unlisten();
+}
+
+
   render(){
     return (
       <Container style={styles.container}>
