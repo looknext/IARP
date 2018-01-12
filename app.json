@@ -1,4 +1,5 @@
 {
-  "name": "NativebaseKitchenSink",
-  "displayName": "NativebaseKitchenSink"
+  "expo": {
+    "sdkVersion": "23.0.0"
+  }
 }

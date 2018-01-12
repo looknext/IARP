@@ -3,6 +3,7 @@ import {
   Container,
   Header,
   Title,
+  Toast,
   Content,
   Button,
   Item,
@@ -21,6 +22,41 @@ class Login extends Component {
     _onPressButton() {
         console.log("You tapped the button!");
     }
+
+    constructor(props) {
+   super(props);
+   this.userName = "";
+   this.password = "";
+
+ }
+
+
+ onPressCallback = () => {
+   let formData = new FormData();
+   formData.append("loginName",this.userName);
+   formData.append("pwd",this.password);
+   let url = "http://localhost:8080/loginApp";
+   // NetUitl.postJson(url,formData,(responseText) => {
+   //       alert(responseText);
+   //       this.onLoginSuccess();
+   // })
+   if(this.userName!='youbiai'){
+     Toast.show({
+       text: "Wrong password!",
+       buttonText: "Okay"
+     })
+   }else if(this.password!='sarp**'){
+     Toast.show({
+       text: "Wrong password!",
+       buttonText: "Okay"
+     })
+
+   }else{
+     this.props.navigation.navigate("Main")
+
+   }
+
+ };
   render() {
     return (
       <Container style={styles.container}>
@@ -38,17 +74,24 @@ class Login extends Component {
 
         <Content>
           <Form>
-            <Item floatingLabel>
+            <Item  floatingLabel  >
               <Label>Username</Label>
-              <Input />
+              <Input
+              onPress={()=>{
+
+                this.setState({untext:'Useless Multiline Placeholder'})}}
+              onChangeText={(text) => {this.userName = text;  }}
+              />
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input secureTextEntry />
+              <Input onChangeText={(text) => {
+            this.password = text;
+        }} secureTextEntry />
             </Item>
           </Form>
           <Button block style={{ margin: 15, marginTop: 50 }}
-                  onPress={() => this.props.navigation.navigate("Main")}
+                  onPress={() =>this.onPressCallback() }
 
           >
             <Text>Sign In</Text>
