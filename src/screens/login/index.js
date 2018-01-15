@@ -17,11 +17,9 @@ import {
   Text
 } from "native-base";
 import styles from "./styles";
+import sorage from "../util/MySorage";
 
 class Login extends Component {
-    _onPressButton() {
-        console.log("You tapped the button!");
-    }
 
     constructor(props) {
    super(props);
@@ -32,14 +30,24 @@ class Login extends Component {
 
 
  onPressCallback = () => {
+     sorage._getStorage();
    let formData = new FormData();
    formData.append("loginName",this.userName);
    formData.append("pwd",this.password);
    let url = "http://localhost:8080/loginApp";
-   // NetUitl.postJson(url,formData,(responseText) => {
-   //       alert(responseText);
-   //       this.onLoginSuccess();
-   // })
+     // fetch(url, {
+     //     method: 'post',
+     //     body: formData
+     // }).then(function(response) {
+     //        if(response.ok){
+     //            var reslut=response.json();
+     //            sorage._sava("sessionid",reslut.sessionid)
+     //            sorage._sava("userid",reslut.userid)
+
+     //        }
+     // }).catch(function(err) {
+     //     //错误处理
+     // });
    if(this.userName!='youbiai'){
      Toast.show({
        text: "Wrong password!",
@@ -52,6 +60,10 @@ class Login extends Component {
      })
 
    }else{
+       sorage._sava("sessionid","eeee")
+       sorage._sava("userid","eeee")
+
+
      this.props.navigation.navigate("Main")
 
    }
@@ -67,7 +79,7 @@ class Login extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Floating Label</Title>
+            <Title>Login</Title>
           </Body>
           <Right />
         </Header>

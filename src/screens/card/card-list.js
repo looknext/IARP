@@ -16,7 +16,16 @@ import {
 import styles from "./styles";
 
 class NHCardList extends Component {
-  render() {
+
+    constructor(props) {
+        super(props);
+
+    }
+
+
+
+
+    render() {
     return (
       <Container style={styles.container}>
         <Header>

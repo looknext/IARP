@@ -22,6 +22,8 @@ const logo = require("../../../assets/logo.png");
 const cardImage = require("../../../assets/drawer-cover.png");
 
 class NHCardShowcase extends Component {
+
+
   render() {
     return (
       <Container style={styles.container}>

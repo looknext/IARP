@@ -71,7 +71,7 @@ class AdvancedDeck extends Component {
                 <Text>Over</Text>
               </View>}
             renderItem={item =>
-              <Card style={{ elevation: 3 }}>
+              <Card  style={{ elevation: 3 }}>
                 <CardItem>
                   <Left>
                     <Thumbnail source={item.image} />

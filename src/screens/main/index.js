@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import AMapLocation from 'react-native-amap-location';
 import {AppRegistry,StyleSheet,ActivityIndicator} from 'react-native';
+import sorage from "../util/MySorage";
 
 var Geolocation = require('Geolocation');  //要引用定位连接，否则会提示找不到对象，很多资料都没说到这一点。
 
@@ -19,6 +20,7 @@ import {
   Icon
 } from "native-base";
 import styles from "./styles";
+var storage;
 
 class Main extends Component {
   constructor(props) {
@@ -90,7 +92,10 @@ timeout:'1'
     });
   }
   componentDidMount() {
+      storage=sorage._getStorage();
 
+
+      this.getSession("sessionid")
     this.timer = setInterval(
           ()=>{
             // this.unlisten = AMapLocation.addEventListener((data) =>   this.setState({
@@ -102,7 +107,7 @@ timeout:'1'
             //   killProcess: true,
             //   needDetail: true,
             // });
-              this.GetGeolocation();
+            //   this.GetGeolocation();
           },
           2000,
         );
@@ -112,7 +117,40 @@ timeout:'1'
 
 
 }
+    getSession(key){
+        storage.load({
+            key: key,
+            // autoSync(默认为true)意味着在没有找到数据或数据过期时自动调用相应的sync方法
+            autoSync: false,
+            // syncInBackground(默认为true)意味着如果数据过期，
+            // 在调用sync方法的同时先返回已经过期的数据。
+            // 设置为false的话，则始终强制返回sync方法提供的最新数据(当然会需要更多等待时间)。
+            syncInBackground: false,
 
+            // 你还可以给sync方法传递额外的参数
+            // syncParams:{ params,
+            //     someFlag: someFlag,
+            // },
+        }).then(ret => {
+
+            this.setState({LocalPosition: ret})
+
+            return ret;
+        }).catch(err => {
+            //如果没有找到数据且没有sync方法，
+            //或者有其他异常，则在catch中返回
+            this.props.navigation.navigate("Login");
+            console.log(err.message);
+            switch (err.name) {
+                case 'NotFoundError':
+                    // TODO;
+                    break;
+                case 'ExpiredError':
+                    // TODO
+                    break;
+            }
+        });
+    }
 
 
 componentWillUnmount() {
