@@ -18,6 +18,7 @@ import {
 } from "native-base";
 import styles from "./styles";
 import sorage from "../util/MySorage";
+const dismissKeyboard = require('dismissKeyboard');
 
 class Login extends Component {
 
@@ -30,43 +31,79 @@ class Login extends Component {
 
 
  onPressCallback = () => {
+     dismissKeyboard();
+
      sorage._getStorage();
    let formData = new FormData();
    formData.append("loginName",this.userName);
    formData.append("pwd",this.password);
-   let url = "http://localhost:8080/loginApp";
-     // fetch(url, {
-     //     method: 'post',
-     //     body: formData
-     // }).then(function(response) {
-     //        if(response.ok){
-     //            var reslut=response.json();
-     //            sorage._sava("sessionid",reslut.sessionid)
-     //            sorage._sava("userid",reslut.userid)
+   let url = "http://192.168.0.168:8080/Evolution-server/server/login/login";
+     fetch(url, {
+         body: formData,
 
-     //        }
-     // }).catch(function(err) {
-     //     //错误处理
-     // });
-   if(this.userName!='youbiai'){
-     Toast.show({
-       text: "Wrong password!",
-       buttonText: "Okay"
-     })
-   }else if(this.password!='sarp**'){
-     Toast.show({
-       text: "Wrong password!",
-       buttonText: "Okay"
+         method:'POST',
+
+      }) .then((response) => {
+         return response.json();
      })
 
-   }else{
-       sorage._sava("sessionid","eeee")
-       sorage._sava("userid","eeee")
+
+     .then((responseText)=> {
 
 
-     this.props.navigation.navigate("Main")
+                // alert(response.text());
+                //
+                // for (let k of Object.keys(reslut)) {
+                //     alert(k);
+                //
+                //     alert(reslut[k]);
+                // }
 
-   }
+                if(responseText.message==101){
+                    sorage._sava("sessionid",responseText.sessionid);
+                    sorage._sava("userid",responseText.userid);
+                    this.props.navigation.navigate("Main");
+
+                }else if(responseText.message==201){
+                    Toast.show({
+                        text: "Invalid username!",
+                        buttonText: "Okay"
+                    })
+
+                }else if(responseText.message==202){
+                    Toast.show({
+                        text: "Wrong password!",
+                        buttonText: "Okay"
+                    })
+
+                }
+
+
+
+     }).catch(function(err) {
+         alert(err);
+
+         //错误处理
+     });
+   // if(this.userName!='youbiai'){
+   //   Toast.show({
+   //     text: "Wrong password!",
+   //     buttonText: "Okay"
+   //   })
+   // }else if(this.password!='sarp**'){
+   //   Toast.show({
+   //     text: "Wrong password!",
+   //     buttonText: "Okay"
+   //   })
+   //
+   // }else{
+   //     sorage._sava("sessionid","eeee")
+   //     sorage._sava("userid","eeee")
+   //
+   //
+   //   this.props.navigation.navigate("Main")
+   //
+   // }
 
  };
   render() {

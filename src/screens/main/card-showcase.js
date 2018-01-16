@@ -21,14 +21,14 @@ const deviceWidth = Dimensions.get("window").width;
 const logo = require("../../../assets/logo.png");
 const cardImage = require("../../../assets/drawer-cover.png");
 const buttonIocn='logo-github';
-var Geolocation = require('Geolocation');  //要引用定位连接，否则会提示找不到对象，很多资料都没说到这一点。
+let Geolocation = require('Geolocation');  //要引用定位连接，否则会提示找不到对象，很多资料都没说到这一点。
 
 
 import sorage from "../util/MySorage";
-var storage;
+let storage;
 
-var userId ='';
-var sessionId='';
+let userId ='';
+let sessionId='';
 class NHCardShowcase extends Component {
 
     constructor(props) {
@@ -57,7 +57,7 @@ class NHCardShowcase extends Component {
     }
 
     add(){
-        var add={
+        let add={
             headlogo: 'https://pic4.zhimg.com/50/eac5b8263_im.jpg',
             title:'sprise',
             datatime:'April 15, 2016',
@@ -70,10 +70,10 @@ class NHCardShowcase extends Component {
             score:'4,923 stars'
 
         };
-        var tmps=this.state.showText;
+        let tmps=this.state.showText;
 
-        tmps.unshift(add)
-        this.setState({showText:tmps})
+        tmps.unshift(add);
+        this.setState({showText:tmps};
     }
 
     GetGeolocation(){
@@ -85,11 +85,7 @@ class NHCardShowcase extends Component {
 
         */
         Geolocation.getCurrentPosition(val => {
-            let ValInfo = "speed=" + val.coords.speed +
-                "&longitude=" + val.coords.longitude +
-                "\n纬度：" + val.coords.latitude +
-                "\n准确度：" + val.coords.accuracy +
-                "\n时间戳：" + val.timestamp;
+
 
 
             let formData = new FormData();
@@ -101,17 +97,22 @@ class NHCardShowcase extends Component {
             formData.append("longitude",val.coords.longitude);
             formData.append("latitude",val.coords.latitude);
 
-            formData.append("timestamp",val.coords.timestamp);
+            formData.append("timestamp",val.timestamp);
 
-            let url = "http://localhost:8080";
+            let url = "http://192.168.0.168:8080/Evolution-server/server/gps/gps";
             fetch(url, {
                 method: 'post',
                 body: formData
-            }).then(function(response) {
-                var result=response.json();
-                if(result.message){
-                    var add={
-                        headlogo: result.headlogo,
+            }).then((response) => {
+                return response.json();
+            })
+
+
+                .then((responseText)=> {
+                let result=responseText;
+                if(!result.takeable){
+                    let add={
+                        headlogo: result.headLogo,
                         title:result.title,
                         datatime:result.dataTime,
                         cardImage:result.cardImage,
@@ -119,20 +120,27 @@ class NHCardShowcase extends Component {
                         score:result.score
 
                     };
-                    var tmps=this.state.showText;
+                    let tmps=this.state.showText;
 
-                    tmps.unshift(add)
-                    this.setState({showText:tmps})
+                    tmps.unshift(add);
+                    if(tmps.length>20){
+                        tmps.pop();
+                    }
+                    this.setState({showText:tmps});
                 }
 
               //  获取数据,数据处理
-            });
+            }).catch(function(err) {
+                alert(err);
 
+                //错误处理
+            });
 
 
 
         }, val => {
             let ValInfo = '获取坐标失败：' + val;
+            console.log(ValInfo);
         });
     }
     getuser(key,callBack){
@@ -151,7 +159,7 @@ class NHCardShowcase extends Component {
             // },
         }).then(ret => {
 
-            callBack( ret)
+            callBack( ret);
 
             return ret;
         }).catch(err => {
@@ -160,7 +168,7 @@ class NHCardShowcase extends Component {
             console.log(err.message);
             switch (err.name) {
                 case 'NotFoundError':
-                    this.props.navigation.navigate("Login")
+                    this.props.navigation.navigate("Login");
                     break;
                 case 'ExpiredError':
                     // TODO
@@ -190,9 +198,8 @@ class NHCardShowcase extends Component {
                 //   killProcess: true,
                 //   needDetail: true,
                 // });
-                // this.GetGeolocation();
+                this.GetGeolocation();
 
-            this.add();
 
 
             },
@@ -229,7 +236,7 @@ class NHCardShowcase extends Component {
               </Button>
           </Left>
           <Body>
-            <Title></Title>
+            <Title> </Title>
           </Body>
           <Right />
         </Header>
