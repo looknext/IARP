@@ -7,7 +7,7 @@ import sorage from "../util/MySorage";
 
 const launchscreenBg = require("../../../assets/launchscreen-bg.png");
 const launchscreenLogo = require("../../../assets/logo-kitchen-sink.png");
-var storage;
+let storage;
 
 class Home extends Component {
     constructor(props) {

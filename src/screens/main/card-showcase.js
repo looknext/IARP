@@ -21,14 +21,14 @@ const deviceWidth = Dimensions.get("window").width;
 const logo = require("../../../assets/logo.png");
 const cardImage = require("../../../assets/drawer-cover.png");
 const buttonIocn='logo-github';
-let Geolocation = require('Geolocation');  //要引用定位连接，否则会提示找不到对象，很多资料都没说到这一点。
+var Geolocation = require('Geolocation');  //要引用定位连接，否则会提示找不到对象，很多资料都没说到这一点。
 
 
 import sorage from "../util/MySorage";
-let storage;
+var storage;
 
-let userId ='';
-let sessionId='';
+var userId ='';
+var sessionId='';
 class NHCardShowcase extends Component {
 
     constructor(props) {
@@ -40,7 +40,7 @@ class NHCardShowcase extends Component {
                   {headlogo: 'https://pic4.zhimg.com/50/eac5b8263_im.jpg',
                       title:'sprise',
                       datatime:'April 15, 2016',
-                      cardImage:'https://wx1.sinaimg.cn/mw690/006lIMa0gy1fmplxde49cj30nt0xcapa.jpg',
+                      cardImage:'https://reactnative.cn/static/docs/0.51/img/react-native-congratulations.png',
                       content:'NativeBase is a free and source framework that enable' +
                       'developers to build high-quality mobile apps using React' +
                       'Native iOS and Android apps with a fusion of ES6. NativeBase' +
@@ -56,25 +56,7 @@ class NHCardShowcase extends Component {
 
     }
 
-    add(){
-        let add={
-            headlogo: 'https://pic4.zhimg.com/50/eac5b8263_im.jpg',
-            title:'sprise',
-            datatime:'April 15, 2016',
-            cardImage:'https://wx1.sinaimg.cn/mw690/006lIMa0gy1fmplxde49cj30nt0xcapa.jpg',
-            content:'NativeBase is a free and source framework that enable' +
-            'developers to build high-quality mobile apps using React' +
-            'Native iOS and Android apps with a fusion of ES6. NativeBase' +
-            'builds a layer on top of React Native that provides you with' +
-            'basic set of components for mobile application development.',
-            score:'4,923 stars'
 
-        };
-        let tmps=this.state.showText;
-
-        tmps.unshift(add);
-        this.setState({showText:tmps};
-    }
 
     GetGeolocation(){
         /*
@@ -85,7 +67,11 @@ class NHCardShowcase extends Component {
 
         */
         Geolocation.getCurrentPosition(val => {
-
+            let ValInfo = "speed=" + val.coords.speed +
+                "&longitude=" + val.coords.longitude +
+                "\n纬度：" + val.coords.latitude +
+                "\n准确度：" + val.coords.accuracy +
+                "\n时间戳：" + val.timestamp;
 
 
             let formData = new FormData();
@@ -140,7 +126,6 @@ class NHCardShowcase extends Component {
 
         }, val => {
             let ValInfo = '获取坐标失败：' + val;
-            console.log(ValInfo);
         });
     }
     getuser(key,callBack){
@@ -159,7 +144,7 @@ class NHCardShowcase extends Component {
             // },
         }).then(ret => {
 
-            callBack( ret);
+            callBack( ret)
 
             return ret;
         }).catch(err => {
@@ -168,7 +153,7 @@ class NHCardShowcase extends Component {
             console.log(err.message);
             switch (err.name) {
                 case 'NotFoundError':
-                    this.props.navigation.navigate("Login");
+                    this.props.navigation.navigate("Login")
                     break;
                 case 'ExpiredError':
                     // TODO
@@ -236,7 +221,7 @@ class NHCardShowcase extends Component {
               </Button>
           </Left>
           <Body>
-            <Title> </Title>
+            <Title></Title>
           </Body>
           <Right />
         </Header>

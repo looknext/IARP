@@ -7,11 +7,13 @@ import {
   ListItem,
   Icon,
   Container,
+    Button,
   Left,
   Right,
   Badge
 } from "native-base";
 import styles from "./style";
+import sorage from "../util/MySorage";
 
 const drawerCover = require("../../../assets/drawer-cover.png");
 const drawerImage = require("../../../assets/logo-kitchen-sink.png");
@@ -185,7 +187,16 @@ class SideBar extends Component {
     };
   }
 
+
+
+
+
+
   render() {
+
+
+
+
     return (
       <Container>
         <Content
@@ -230,7 +241,16 @@ class SideBar extends Component {
                   </Right>}
               </ListItem>}
           />
+
         </Content>
+          <Button onPress={()=>{
+              sorage._getStorage();
+              sorage._remove("sessionid");
+              sorage._remove("userid");
+              this.props.navigation.navigate("Home")
+          }} full dark style={styles.mt15}>
+              <Text>Logout</Text>
+          </Button>
       </Container>
     );
   }
