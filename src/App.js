@@ -73,7 +73,7 @@ import IconActionSheet from "./screens/actionsheet/icon";
 import AdvSegment from "./screens/segment/segmentTab";
 import SimpleDeck from "./screens/deckswiper/simple";
 import AdvancedDeck from "./screens/deckswiper/advanced";
-import Main from "./screens/main/card-showcase";
+import Main from "./screens/main/";
 import Home from "./screens/home/";
 import Login from "./screens/login/";
 import Anatomy from "./screens/anatomy/";

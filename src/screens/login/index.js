@@ -31,22 +31,20 @@ class Login extends Component {
 
 
  onPressCallback = () => {
+
      dismissKeyboard();
 
      sorage._getStorage();
-   let formData = new FormData();
-   formData.append("loginName",this.userName);
-   formData.append("pwd",this.password);
-   let url = "http://192.168.0.168:8080/Evolution-server/server/login/login";
+     let formData = new FormData();
+     formData.append("loginName",this.userName);
+     formData.append("pwd",this.password);
+     let url = "http://192.168.0.168:8080/Evolution-server/server/login/login";
      fetch(url, {
          body: formData,
-
          method:'POST',
-
-      }) .then((response) => {
+      }).then((response) => {
          return response.json();
      })
-
 
      .then((responseText)=> {
 

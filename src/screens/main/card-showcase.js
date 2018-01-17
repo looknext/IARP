@@ -56,7 +56,7 @@ class NHCardShowcase extends Component {
 
     }
 
-    add(){
+    /*add(){
         let add={
             headlogo: 'https://pic4.zhimg.com/50/eac5b8263_im.jpg',
             title:'sprise',
@@ -74,7 +74,7 @@ class NHCardShowcase extends Component {
 
         tmps.unshift(add);
         this.setState({showText:tmps};
-    }
+    }*/
 
     GetGeolocation(){
         /*

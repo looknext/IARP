@@ -17,6 +17,7 @@ import java.util.List;
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+
     @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
@@ -25,13 +26,11 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
+          new VoiceReactPackage(),
           new MainReactPackage(),
             new VectorIconsPackage(),
               new AMapLocationReactPackage(), // <-- Register package here
               new RCTMqttPackage()           // for newest version of react-native
-
-
-
       );
     }
 

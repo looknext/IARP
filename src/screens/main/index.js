@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+
+// import test baidu Voice module
+import VoiceUtils from '../util/VoiceUtils';
+
 // import AMapLocation from 'react-native-amap-location';
 import {AppRegistry,StyleSheet,ActivityIndicator} from 'react-native';
 import sorage from "../util/MySorage";
@@ -31,15 +35,16 @@ class Main extends Component {
       tab2: false,
       tab3: true,
       tab4: false,
-        LocalPosition:'',
-
-        latitude:'fasdf',
+      LocalPosition:'',
+      latitude:'fasdf',
       longitude:'fasdf',
-timeout:'1'
-
+      timeout:'1'
     };
+
   }
-    GetGeolocation(){
+
+
+  GetGeolocation(){
         /*
         说明：getCurrentPosition(fun_success,fun_error,geo_options)
         成功回调函数与失败回调函数的写法， 应该使用箭头函数方式，因为回调结果可以供当前页面的this所调用，否则当前页面使用不了。
@@ -91,13 +96,15 @@ timeout:'1'
       tab4: true
     });
   }
+
   componentDidMount() {
       storage=sorage._getStorage();
 
 
       this.getSession("sessionid")
-    this.timer = setInterval(
+      this.timer = setInterval(
           ()=>{
+            VoiceUtils.speak("欢迎李总，我们在测试",1);
             // this.unlisten = AMapLocation.addEventListener((data) =>   this.setState({
             //    latitude: data.latitude ,
             //    longitude: data.longitude
@@ -111,10 +118,6 @@ timeout:'1'
           },
           2000,
         );
-
-
-
-
 
 }
     getSession(key){
