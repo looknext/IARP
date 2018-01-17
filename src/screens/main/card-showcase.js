@@ -21,14 +21,14 @@ const deviceWidth = Dimensions.get("window").width;
 const logo = require("../../../assets/logo.png");
 const cardImage = require("../../../assets/drawer-cover.png");
 const buttonIocn='logo-github';
-var Geolocation = require('Geolocation');  //要引用定位连接，否则会提示找不到对象，很多资料都没说到这一点。
+let Geolocation = require('Geolocation');  //要引用定位连接，否则会提示找不到对象，很多资料都没说到这一点。
 
 
 import sorage from "../util/MySorage";
-var storage;
+let storage;
 
-var userId ='';
-var sessionId='';
+let userId ='';
+let sessionId='';
 class NHCardShowcase extends Component {
 
     constructor(props) {
@@ -67,13 +67,7 @@ class NHCardShowcase extends Component {
 
         */
         Geolocation.getCurrentPosition(val => {
-            let ValInfo = "speed=" + val.coords.speed +
-                "&longitude=" + val.coords.longitude +
-                "\n纬度：" + val.coords.latitude +
-                "\n准确度：" + val.coords.accuracy +
-                "\n时间戳：" + val.timestamp;
-
-
+          
             let formData = new FormData();
             formData.append("sessionid",sessionId);
 
@@ -96,7 +90,11 @@ class NHCardShowcase extends Component {
 
                 .then((responseText)=> {
                 let result=responseText;
-                if(!result.takeable){
+				if(result.takeable==null){
+					   sorage._remove("sessionid");
+						  sorage._remove("userid");
+						  this.props.navigation.navigate("Home")
+				}else if(!result.takeable){
                     let add={
                         headlogo: result.headLogo,
                         title:result.title,
@@ -126,6 +124,9 @@ class NHCardShowcase extends Component {
 
         }, val => {
             let ValInfo = '获取坐标失败：' + val;
+			console.err("sss")
+			                alert(ValInfo);
+
         });
     }
     getuser(key,callBack){
