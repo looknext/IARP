@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "93276407359",
+    "firebase_url": "https://evolution-61d75.firebaseio.com",
+    "project_id": "evolution-61d75",
+    "storage_bucket": "evolution-61d75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93276407359:android:fdc7fc61bdf54f87",
+        "android_client_info": {
+          "package_name": "com.evolution"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "93276407359-m9ffu4s7hmvjfsio7i636r0r8alplmcv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.evolution",
+            "certificate_hash": "edd10b84a9a6333948adfdae673ef27dfa45e346"
+          }
+        },
+        {
+          "client_id": "93276407359-6p6n1qi6d5lul7nshl92m8pan5qpm87i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxXxwkmFh2-exw-IzKQYXj6Rt4kNAdMkc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "93276407359-6p6n1qi6d5lul7nshl92m8pan5qpm87i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

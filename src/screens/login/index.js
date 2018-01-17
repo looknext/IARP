@@ -57,18 +57,18 @@ class Login extends Component {
                 //     alert(reslut[k]);
                 // }
 
-                if(responseText.message==101){
-                    sorage._sava("sessionid",responseText.sessionid);
-                    sorage._sava("userid",responseText.userid);
-                    this.props.navigation.navigate("Main");
+                if(responseText.message=="101"){
+                    sorage._sava("sessionid",responseText.sessionid)
+                    sorage._sava("userid",responseText.userid)
+                    this.props.navigation.navigate("Main")
 
-                }else if(responseText.message==201){
+                }else if(responseText.message=="201"){
                     Toast.show({
                         text: "Invalid username!",
                         buttonText: "Okay"
                     })
 
-                }else if(responseText.message==202){
+                }else if(responseText.message=="202"){
                     Toast.show({
                         text: "Wrong password!",
                         buttonText: "Okay"

@@ -40,7 +40,7 @@ class NHCardShowcase extends Component {
                   {headlogo: 'https://pic4.zhimg.com/50/eac5b8263_im.jpg',
                       title:'sprise',
                       datatime:'April 15, 2016',
-                      cardImage:'https://wx1.sinaimg.cn/mw690/006lIMa0gy1fmplxde49cj30nt0xcapa.jpg',
+                      cardImage:'https://reactnative.cn/static/docs/0.51/img/react-native-congratulations.png',
                       content:'NativeBase is a free and source framework that enable' +
                       'developers to build high-quality mobile apps using React' +
                       'Native iOS and Android apps with a fusion of ES6. NativeBase' +
@@ -56,6 +56,7 @@ class NHCardShowcase extends Component {
 
     }
 
+<<<<<<< HEAD
     /*add(){
         let add={
             headlogo: 'https://pic4.zhimg.com/50/eac5b8263_im.jpg',
@@ -75,6 +76,9 @@ class NHCardShowcase extends Component {
         tmps.unshift(add);
         this.setState({showText:tmps};
     }*/
+=======
+
+>>>>>>> b4e4db1ff0807df60960accb7913c1a0ec126961
 
     GetGeolocation(){
         /*
@@ -85,9 +89,7 @@ class NHCardShowcase extends Component {
 
         */
         Geolocation.getCurrentPosition(val => {
-
-
-
+          
             let formData = new FormData();
             formData.append("sessionid",sessionId);
 
@@ -110,7 +112,11 @@ class NHCardShowcase extends Component {
 
                 .then((responseText)=> {
                 let result=responseText;
-                if(!result.takeable){
+				if(result.takeable==null){
+					   sorage._remove("sessionid");
+						  sorage._remove("userid");
+						  this.props.navigation.navigate("Home")
+				}else if(!result.takeable){
                     let add={
                         headlogo: result.headLogo,
                         title:result.title,
@@ -140,7 +146,9 @@ class NHCardShowcase extends Component {
 
         }, val => {
             let ValInfo = '获取坐标失败：' + val;
-            console.log(ValInfo);
+			console.err("sss")
+			                alert(ValInfo);
+
         });
     }
     getuser(key,callBack){
@@ -159,7 +167,7 @@ class NHCardShowcase extends Component {
             // },
         }).then(ret => {
 
-            callBack( ret);
+            callBack( ret)
 
             return ret;
         }).catch(err => {
@@ -168,7 +176,7 @@ class NHCardShowcase extends Component {
             console.log(err.message);
             switch (err.name) {
                 case 'NotFoundError':
-                    this.props.navigation.navigate("Login");
+                    this.props.navigation.navigate("Login")
                     break;
                 case 'ExpiredError':
                     // TODO
@@ -236,7 +244,7 @@ class NHCardShowcase extends Component {
               </Button>
           </Left>
           <Body>
-            <Title> </Title>
+            <Title></Title>
           </Body>
           <Right />
         </Header>

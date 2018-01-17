@@ -11,6 +11,12 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.xiaobu.amap.AMapLocationReactPackage;
 
+import com.baidu.tts.auth.AuthInfo;
+import com.baidu.tts.chainofresponsibility.logger.LoggerProxy;
+import com.baidu.tts.client.SpeechSynthesizer;
+import com.baidu.tts.client.SpeechSynthesizerListener;
+import com.baidu.tts.client.TtsMode;
+
 import java.util.Arrays;
 import java.util.List;
 
