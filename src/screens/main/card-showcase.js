@@ -56,29 +56,7 @@ class NHCardShowcase extends Component {
 
     }
 
-<<<<<<< HEAD
-    /*add(){
-        let add={
-            headlogo: 'https://pic4.zhimg.com/50/eac5b8263_im.jpg',
-            title:'sprise',
-            datatime:'April 15, 2016',
-            cardImage:'https://wx1.sinaimg.cn/mw690/006lIMa0gy1fmplxde49cj30nt0xcapa.jpg',
-            content:'NativeBase is a free and source framework that enable' +
-            'developers to build high-quality mobile apps using React' +
-            'Native iOS and Android apps with a fusion of ES6. NativeBase' +
-            'builds a layer on top of React Native that provides you with' +
-            'basic set of components for mobile application development.',
-            score:'4,923 stars'
 
-        };
-        let tmps=this.state.showText;
-
-        tmps.unshift(add);
-        this.setState({showText:tmps};
-    }*/
-=======
-
->>>>>>> b4e4db1ff0807df60960accb7913c1a0ec126961
 
     GetGeolocation(){
         /*

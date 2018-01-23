@@ -38,7 +38,7 @@ class Login extends Component {
      let formData = new FormData();
      formData.append("loginName",this.userName);
      formData.append("pwd",this.password);
-     let url = "http://192.168.0.168:8080/Evolution-server/server/login/login";
+     let url = "http://192.168.0.95:8080/Evolution-server/server/login/login";
      fetch(url, {
          body: formData,
          method:'POST',

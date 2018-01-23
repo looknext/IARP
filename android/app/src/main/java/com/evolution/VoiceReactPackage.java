@@ -1,26 +1,27 @@
-package com.nativebasekitchensink;
+package com.evolution;
 
 import android.app.Application;
-import com.tuanpm.RCTMqtt.*; // import
-
+import com.evolution.VoiceModule;
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.xiaobu.amap.AMapLocationReactPackage;
 
 import com.baidu.tts.auth.AuthInfo;
 import com.baidu.tts.chainofresponsibility.logger.LoggerProxy;
 import com.baidu.tts.client.SpeechSynthesizer;
 import com.baidu.tts.client.SpeechSynthesizerListener;
 import com.baidu.tts.client.TtsMode;
-
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
-public class VoiceReactPackage extends ReactPackage{
+import com.facebook.react.bridge.NativeModule;
+import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.uimanager.ViewManager;
+public class VoiceReactPackage implements  ReactPackage{
 
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext){
@@ -30,7 +31,7 @@ public class VoiceReactPackage extends ReactPackage{
     }
 
     @Override
-    puhblic List<ViewManager> createViewManagers(ReactApplicationContext reactContext){
+    public List<ViewManager> createViewManagers(ReactApplicationContext reactContext){
         return Collections.emptyList();
     }
 
