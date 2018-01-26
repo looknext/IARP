@@ -1,16 +1,16 @@
 {
   "project_info": {
     "project_number": "93276407359",
-    "firebase_url": "https://evolution-61d75.firebaseio.com",
-    "project_id": "evolution-61d75",
-    "storage_bucket": "evolution-61d75.appspot.com"
+    "firebase_url": "https://looknext.ai2v-61d75.firebaseio.com",
+    "project_id": "looknext.ai2v-61d75",
+    "storage_bucket": "looknext.ai2v-61d75.appspot.com"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:93276407359:android:fdc7fc61bdf54f87",
         "android_client_info": {
-          "package_name": "com.evolution"
+          "package_name": "com.looknext.ai2v"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "93276407359-m9ffu4s7hmvjfsio7i636r0r8alplmcv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.evolution",
+            "package_name": "com.looknext.ai2v",
             "certificate_hash": "edd10b84a9a6333948adfdae673ef27dfa45e346"
           }
         },

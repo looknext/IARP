@@ -1,5 +1,5 @@
 {
-  "name": "Evolution",
+  "name": "IARP",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -37,11 +37,8 @@
     "npm-git-install": "^0.3.0",
     "react": "16.0.0",
     "react-native": "0.50.3",
-    "react-native-amap-location": "0.0.4",
     "react-native-dropdownalert": "^3.1.2",
-    "react-native-mqtt": "0.1.0-beta4",
     "react-native-push-notification": "^3.0.2",
-    "react-native-speech-baidu": "0.0.2",
     "react-native-storage": "^0.2.2",
     "react-native-vector-icons": "4.3.0",
     "react-navigation": "1.0.0-beta.19"

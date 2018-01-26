@@ -1,12 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.evolution"
+    package="com.looknext.ai2v"
     android:versionCode="1"
     android:versionName="1.0">
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <permission
-        android:name="com.evolution.permission.C2D_MESSAGE"
+        android:name="com.looknext.ai2v.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="com.evolution.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.looknext.ai2v.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
@@ -31,13 +31,13 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
-      android:name=".MainApplication"
+      android:name="com.looknext.ai2v.MainApplication"
       android:allowBackup="true"
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
       android:theme="@style/AppTheme">
       <activity
-        android:name=".MainActivity"
+        android:name="com.looknext.ai2v.MainActivity"
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
         android:windowSoftInputMode="adjustResize">
@@ -53,7 +53,7 @@
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="com.evolution" />
+                <category android:name="com.looknext.ai2v" />
             </intent-filter>
         </receiver>
 
