@@ -1,24 +1,9 @@
 import React, { Component } from "react";
-import { Image, Dimensions } from "react-native";
-import {
-  Container,
-  Header,
-  Title,
-  Content,
-  Button,
-  Icon,
-  Card,
-  CardItem,
-  Text,
-  Thumbnail,
-  Left,
-  Right,
-  Body
-} from "native-base";
-import styles from "./styles";
-
+import { Image, Dimensions,StyleSheet,View} from "react-native";
+import {Container,Header,Title,Content,Button,Icon,Card,CardItem,Text,Thumbnail,Left,Right,Body,Footer,Input,Item} from "native-base";
+import style from "../style";
 const deviceWidth = Dimensions.get("window").width;
-const logo = require("../../../assets/logo.png");
+const logo = require("../img/logo.jpg");
 const cardImage = require("../../../assets/drawer-cover.png");
 const buttonIocn='logo-github';
 let Geolocation = require('Geolocation');  //要引用定位连接，否则会提示找不到对象，很多资料都没说到这一点。
@@ -26,16 +11,12 @@ let Geolocation = require('Geolocation');  //要引用定位连接，否则会�
 
 import sorage from "../util/MySorage";
 let storage;
-
 let userId ='';
 let sessionId='';
 class NHCardShowcase extends Component {
-
     constructor(props) {
         super(props);
-
             this.state = {
-
                 showText: [
                   {headlogo: 'https://pic4.zhimg.com/50/eac5b8263_im.jpg',
                       title:'sprise',
@@ -48,37 +29,25 @@ class NHCardShowcase extends Component {
                       'basic set of components for mobile application development.',
                       score:'4,923 stars'
 
-                  }
-
-
-                  ]
+                  }]
             };
-
     }
-
-
-
     GetGeolocation(){
         /*
         说明：getCurrentPosition(fun_success,fun_error,geo_options)
         成功回调函数与失败回调函数的写法， 应该使用箭头函数方式，因为回调结果可以供当前页面的this所调用，否则当前页面使用不了。
         例：getCurrentPosition(function(val){ this.setState....  },function(val){ this.setState....})
         会提示未定义函数或找不到对像，错误位置为this.setState
-
         */
         Geolocation.getCurrentPosition(val => {
           
             let formData = new FormData();
             formData.append("sessionid",sessionId);
-
             formData.append("userid",userId);
-
             formData.append("speed",val.coords.speed);
             formData.append("longitude",val.coords.longitude);
             formData.append("latitude",val.coords.latitude);
-
             formData.append("timestamp",val.timestamp);
-
             let url = "http://192.168.0.168:8080/Evolution-server/server/gps/gps";
             fetch(url, {
                 method: 'post',
@@ -86,8 +55,6 @@ class NHCardShowcase extends Component {
             }).then((response) => {
                 return response.json();
             })
-
-
                 .then((responseText)=> {
                 let result=responseText;
 				if(result.takeable==null){
@@ -102,7 +69,6 @@ class NHCardShowcase extends Component {
                         cardImage:result.cardImage,
                         content:result.content,
                         score:result.score
-
                     };
                     let tmps=this.state.showText;
 
@@ -115,18 +81,15 @@ class NHCardShowcase extends Component {
 
               //  获取数据,数据处理
             }).catch(function(err) {
-                alert(err);
+                // alert(err);
 
                 //错误处理
             });
 
-
-
         }, val => {
             let ValInfo = '获取坐标失败：' + val;
 			console.err("sss")
-			                alert(ValInfo);
-
+			                // alert(ValInfo);a
         });
     }
     getuser(key,callBack){
@@ -162,7 +125,6 @@ class NHCardShowcase extends Component {
             }
         });
     }
-
     componentDidMount() {
         storage=sorage._getStorage();
         this.getuser("sessionid",function (data) {
@@ -171,8 +133,6 @@ class NHCardShowcase extends Component {
         this.getuser("userid",function (data) {
             userId=data;
         });
-
-
             this.timer = setInterval(
             ()=>{
                 // this.unlisten = AMapLocation.addEventListener((data) =>   this.setState({
@@ -185,35 +145,19 @@ class NHCardShowcase extends Component {
                 //   needDetail: true,
                 // });
                 this.GetGeolocation();
-
-
-
             },
             2000,
         );
-
-
-
-
-
     }
-
-
-
     componentWillUnmount() {
         // AMapLocation.stopLocation();
         this.timer && clearTimeout(this.timer)
-
         // this.unlisten();
     }
-
-
-
-
   render() {
     return (
       <Container style={styles.container}>
-        <Header>
+        <Header style={style.bgc}>
           <Left>
               <Button transparent
                       onPress={() => this.props.navigation.navigate("DrawerOpen")}
@@ -226,55 +170,165 @@ class NHCardShowcase extends Component {
           </Body>
           <Right />
         </Header>
-
-        <Content padder>
-
-
-
-            {this.state.showText.map((cart,i)=>
-          <Card  key={i} style={styles.mb}>
-            <CardItem bordered>
-              <Left>
-                <Thumbnail source={{url:cart.headlogo}} />
-                <Body>
-                  <Text>{cart.title}</Text>
-                  <Text note>{cart.datatime}</Text>
-                </Body>
-              </Left>
-            </CardItem>
-
-            <CardItem>
+        <Content style={styles.cont}>
+          <View style={styles.pos}>
+             <View>
+              <View style={[styles.chatAnswer,styles.mb]}>
+                <Image source={require('../img/logo.jpg')} style={[styles.chatImg,styles.inlinl]}></Image>
+                <View style={[styles.inlin,styles.pl]}>
+                  <Text style={[styles.chatText,styles.textl]}>May I help you?</Text>
+                </View>
+              </View>
+             </View>
+             <View style={styles.boxpl}>
+              <View style={[styles.chatQuestion,styles.mb]}>
+                <Image source={require('../img/logo.jpg')} style={[styles.chatImg,styles.inlinr]}></Image>
+                <View style={[styles.inlin,styles.pr]}>
+                  <Text style={[styles.chatText,styles.textr]}>What it is the weather today?</Text>
+                </View>
+              </View>
+             </View>
+             <View>
+              <View style={[styles.chatAnswer,styles.mb]}>
+                <Image source={require('../img/logo.jpg')} style={[styles.chatImg,styles.inlinl]}></Image>
+                <View style={[styles.inlin,styles.pl]}>
+                  <Text style={[styles.chatText,styles.textl]}>It is sunny.</Text>
+                </View>
+              </View>
+             </View>
+             <View style={styles.boxpl}>
+              <View style={[styles.chatQuestion,styles.mb]}>
+                <Image source={require('../img/logo.jpg')} style={[styles.chatImg,styles.inlinr]}></Image>
+                <View style={[styles.inlin,styles.pr]}>
+                  <Text style={[styles.chatText,styles.textr]}>What can I do for you?A merry heart goes all the way.</Text>
+                </View>
+              </View>
+             </View>
+          </View>
+          <Card style={styles.card}>
+            <CardItem style={styles.carditem}>
               <Body>
-                <Image
-                  style={{
-                    alignSelf: "center",
-                    height: 150,
-                    resizeMode: "cover",
-                    width: deviceWidth / 1.18,
-                    marginVertical: 5
-                  }}
-                  source={{url:cart.cardImage}}
-                />
-                <Text>
-                    {cart.content}
-                </Text>
+                <Image source={logo} style={{flex: 1,width:140,height:80,}}/>
+                <View>
+                  <Text style={styles.headline}>Donatello</Text>
+                  <Text style={styles.rank}>
+                    <Icon name="star" style={[styles.active,]}/>
+                    <Icon name="star" style={[styles.active,]}/>
+                    <Icon name="star" style={[styles.active,]}/>
+                    <Icon name="star" style={[styles.active,]}/>
+                    <Icon name="star" style={[styles.diactive,]}/>
+                    <Text>$$·0.1mi</Text>
+                  </Text>
+                  <Text style={styles.kind}>Pizza</Text>
+                </View>
               </Body>
             </CardItem>
-            <CardItem style={{ paddingVertical: 0 }}>
-              <Left>
-                <Button transparent>
-                  <Icon name={buttonIocn} />
-                  <Text>{cart.score}</Text>
-                </Button>
-              </Left>
-            </CardItem>
           </Card>
-                )}
-
         </Content>
+        <Item rounded style={styles.say}>
+          <Input placeholder='Si noe......' style={styles.inptxt}/>
+        </Item>
       </Container>
     );
   }
 }
-
 export default NHCardShowcase;
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#ccc",
+  },
+  cont:{
+    paddingHorizontal:15,
+    paddingVertical:20,
+    backgroundColor:'#ccc',
+    paddingBottom:320,
+  },
+  mb:{
+    marginBottom:15
+  },
+  pl:{
+    paddingLeft:8
+  },
+  pr:{
+    paddingRight:8
+  },
+  boxpl:{
+    paddingLeft:55,
+  },
+  text: {
+    alignSelf: "center",
+    marginBottom: 7
+  },
+  inlinl:{
+    justifyContent:'center',  
+    alignItems:'center',
+  },
+  inlinr:{
+    alignItems:'flex-end',
+    justifyContent:'center',  
+  },
+  chatAnswer:{
+    paddingRight:55,
+    flexDirection:'row',  
+  },
+  chatQuestion:{
+    flexDirection:'row-reverse', 
+  },
+  chatText:{
+    borderRadius:15,
+    paddingVertical:8,
+    paddingHorizontal:12,
+    color:'#fff',
+  },
+  textl:{
+    backgroundColor:'#4286f3',
+  },
+  textr:{
+    backgroundColor:'#02aac4',
+  },
+  chatImg:{
+    width:40,
+    height:40,
+    borderRadius:20,
+    alignSelf:'flex-start'
+  },
+  say:{
+    position:'absolute',
+    bottom:0,
+    left:15,
+    right:15,
+  },
+  inptxt:{
+    backgroundColor:'#EFEFEF',
+    paddingLeft:20,
+    borderRadius:25,
+  },
+  card:{
+    flex:0,
+    width:180,
+  },
+  headline:{
+    fontSize:16,
+    color:'#000',
+    paddingTop:5,
+    paddingBottom:10,
+  },
+  rank:{
+    fontSize:14,
+    color:'#a7a7a7'
+  },
+  kind:{
+    color:'#a7a7a7',
+    fontSize:14
+  },
+  active:{
+    color:'#ef6c00',
+    fontSize:16,
+    letterSpacing:3
+  },
+  diactive:{
+    color:'#e0e0e0',
+    fontSize:16,
+    letterSpacing:3
+  },
+});

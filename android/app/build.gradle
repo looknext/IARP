@@ -151,6 +151,15 @@ dependencies {
 
     compile project(':react-native-push-notification')
 
+    compile project(':react-native-background-fetch')
+
+    compile project(':react-native-background-geolocation')
+
+    compile project(':react-native-device-info')
+
+
+
+
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
 }

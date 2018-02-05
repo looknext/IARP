@@ -105,7 +105,7 @@ class Main extends Component {
 
       alert("dd");
 
-     SpeechModule.speak({text:"欢迎李总，我们在测试",language:"zh-CH",rate:0.5},(call)=>{alert(call);});
+     // SpeechModule.speak({text:"欢迎李总，我们在测试",language:"zh-CH",rate:0.5},(call)=>{alert(call);});
       // this.timer = setInterval(
       //     ()=>{
 		//

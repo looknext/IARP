@@ -5,6 +5,13 @@ import android.app.Application;
 import com.looknext.ai2v.BuildConfig;
 
 import com.facebook.react.ReactApplication;
+import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
+import com.react.arron.speech.speechModulePackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.transistorsoft.rnbackgroundgeolocation.RNBackgroundGeolocation;
+import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
+
+
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -29,6 +36,11 @@ public class MainApplication extends Application implements ReactApplication {
 
           new VoiceReactPackage(),
           new MainReactPackage(),
+            new RNBackgroundFetchPackage(),
+            new RNDeviceInfo(),
+            new RNBackgroundGeolocation(),
+            new speechModulePackage(),
+
           new VectorIconsPackage()
       );
     }

@@ -16,14 +16,18 @@ class Home extends Component {
         session:''
         }
     }
-
-
     componentDidMount() {
         storage= sorage._getStorage();
             this.getSession("sessionid");
-
+             this.timer = setTimeout(
+            () => {
+              this.props.navigation.navigate("Login")
+            },
+            1000);
     }
-
+     componentWillUnMount() {
+        this.timer && clearTimeout(this.timer);
+    }
 getSession(key){
     storage.load({
         key: key,
@@ -57,8 +61,6 @@ getSession(key){
         }
     });
 }
-
-
   render() {
     return (
       <Container>
@@ -74,7 +76,7 @@ getSession(key){
           <H3 style={styles.text}></H3>
           <View style={{ marginTop: 8 }} />
 
-          <H3 style={styles.text}>Evolution System</H3>
+          <H3 style={styles.text}>App</H3>
           <View style={{ marginTop: 8 }} />
         </View>
           <View style={styles.logoContainer}>
@@ -82,16 +84,15 @@ getSession(key){
 
           <View style={{ marginBottom: 80 }}>
             <Button
-              style={{ backgroundColor: "#6FAF98", alignSelf: "center" }}
+              style={{ backgroundColor: "transparent", alignSelf: "center" }}
               onPress={()=> {if(this.state.session==''){
                   this.props.navigation.navigate("Login")
 
               }else{
                   this.props.navigation.navigate("Main")
-
               }}}
             >
-              <Text>Lets Go!</Text>
+              <Text></Text>
             </Button>
           </View>
         </ImageBackground>
@@ -99,5 +100,4 @@ getSession(key){
     );
   }
 }
-
 export default Home;
