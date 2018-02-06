@@ -19,14 +19,48 @@ import SideBar from "./screens/sidebar";
 
 const Drawer = DrawerNavigator(
   {
-    Home: { screen: Home },
-      Login: { screen: Login },
+    Home: { screen: Home , navigationOptions: {
+              gesturesEnabled :false,
+              drawerLockMode:'locked-closed'//hide header if not needed so whole screen slide
+
+          },},
+      Login: { screen: Login ,
+          navigationOptions: {
+              gesturesEnabled :false,
+              drawerLockMode:'locked-closed'//hide header if not needed so whole screen slide
+
+          },},
       Main: { screen: Main},
-      ForgetPwd: {screen:ForgetPwd},
-      Reset:{screen:Reset},
-      Create:{screen:Create},
-      Vertification:{screen:Vertification},
-      CompleteInfo:{screen:CompleteInfo},
+      ForgetPwd: {screen:ForgetPwd,
+          navigationOptions: {
+              gesturesEnabled :false,
+              drawerLockMode:'locked-closed'//hide header if not needed so whole screen slide
+
+          }},
+      Reset:{screen:Reset,
+          navigationOptions: {
+              gesturesEnabled :false,
+              drawerLockMode:'locked-closed'//hide header if not needed so whole screen slide
+
+          }},
+      Create:{screen:Create,
+          navigationOptions: {
+              gesturesEnabled :false,
+              drawerLockMode:'locked-closed'//hide header if not needed so whole screen slide
+
+          }},
+      Vertification:{screen:Vertification,
+          navigationOptions: {
+              gesturesEnabled :false,
+              drawerLockMode:'locked-closed'//hide header if not needed so whole screen slide
+
+          }},
+      CompleteInfo:{screen:CompleteInfo,
+          navigationOptions: {
+              gesturesEnabled :false,
+              drawerLockMode:'locked-closed'//hide header if not needed so whole screen slide
+
+          }},
   },
   {
     initialRouteName: "Home",

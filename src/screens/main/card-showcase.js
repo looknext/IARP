@@ -40,7 +40,7 @@ class NHCardShowcase extends Component {
         会提示未定义函数或找不到对像，错误位置为this.setState
         */
         Geolocation.getCurrentPosition(val => {
-          
+
             let formData = new FormData();
             formData.append("sessionid",sessionId);
             formData.append("userid",userId);
@@ -108,7 +108,7 @@ class NHCardShowcase extends Component {
             // },
         }).then(ret => {
 
-            callBack( ret)
+            callBack( ret);
 
             return ret;
         }).catch(err => {
@@ -117,7 +117,7 @@ class NHCardShowcase extends Component {
             console.log(err.message);
             switch (err.name) {
                 case 'NotFoundError':
-                    this.props.navigation.navigate("Login")
+                    this.props.navigation.navigate("Login");
                     break;
                 case 'ExpiredError':
                     // TODO
@@ -260,19 +260,19 @@ const styles = StyleSheet.create({
     marginBottom: 7
   },
   inlinl:{
-    justifyContent:'center',  
+    justifyContent:'center',
     alignItems:'center',
   },
   inlinr:{
     alignItems:'flex-end',
-    justifyContent:'center',  
+    justifyContent:'center',
   },
   chatAnswer:{
     paddingRight:55,
-    flexDirection:'row',  
+    flexDirection:'row',
   },
   chatQuestion:{
-    flexDirection:'row-reverse', 
+    flexDirection:'row-reverse',
   },
   chatText:{
     borderRadius:15,

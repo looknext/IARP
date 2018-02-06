@@ -1,22 +1,38 @@
 import React, { Component } from "react";
-import {Image,View,StyleSheet}  from 'react-native';
+import {Image,View,StyleSheet,Navigator}  from 'react-native';
 import {Container,Header,Title,Toast,Content,Button,Item,Label,Input,Body,Left,Right,Icon,Form,Text} from "native-base";
 import style from "../style";
 import sorage from "../util/MySorage";
 const dismissKeyboard = require('dismissKeyboard');
+
 class Login extends Component {
   constructor(props) {
    super(props);
    this.userName = "";
    this.password = "";
  }
- onPressCallback = () => {
+    componentDidMount(){
+
+        // 通过在componentDidMount里面设置setParams将title的值动态修改
+        this.props.navigation.setParams({
+            swipeEnabled: false,
+            gesturesEnabled:false,
+            headerTitle:'',
+            tabBarLabel:'',
+            drawerLockMode:'locked-closed'//hide header if not needed so whole screen slide
+
+
+        });
+    }
+
+    onPressCallback = () => {
+
      dismissKeyboard();
      sorage._getStorage();
      let formData = new FormData();
      formData.append("loginName",this.userName);
      formData.append("pwd",this.password);
-     let url = "http://psa.youbiai.com/Evolution-server/server/login/login";
+     let url = "http://192.168.0.169:8080/Evolution-server/server/login/login";
      fetch(url, {
          body: formData,
          method:'POST',
@@ -30,8 +46,8 @@ class Login extends Component {
                 //     alert(reslut[k]);
                 // }
                 if(responseText.message=="101"){
-                    sorage._sava("sessionid",responseText.sessionid)
-                    sorage._sava("userid",responseText.userid)
+                    sorage._sava("sessionid",responseText.sessionid);
+                    sorage._sava("userid",responseText.userid);
                     this.props.navigation.navigate("Main")
                 }else if(responseText.message=="201"){
                     Toast.show({
@@ -50,8 +66,10 @@ class Login extends Component {
      });
  };
   render() {
+
     return (
-      <Container style={style.container}>
+
+        <Container style={style.container}>
         <Header style={style.bgc}>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>

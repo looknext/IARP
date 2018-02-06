@@ -21,8 +21,13 @@ class Home extends Component {
             this.getSession("sessionid");
              this.timer = setTimeout(
             () => {
-              this.props.navigation.navigate("Login")
-            },
+                if(this.state.session==''){
+                    this.props.navigation.navigate("Login");
+
+                }else{
+                    this.props.navigation.navigate("Main");
+                }
+                },
             1000);
     }
      componentWillUnMount() {
@@ -44,7 +49,7 @@ getSession(key){
         // },
     }).then(ret => {
 
-        this.setState({session: ret})
+        this.setState({session: ret});
 
         return ret;
     }).catch(err => {

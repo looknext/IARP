@@ -10,8 +10,8 @@ export default {
     color:'#999'
   },
   imgSize:{
-    width:200,
-    height:200
+    width:250,
+    height:250
   },
   text:{
       textAlign:'center',
@@ -29,8 +29,16 @@ export default {
     borderRadius:15,
     backgroundColor:'#4a81f8'
   },
+    btnV:{
+        margin:0,
+        borderRadius:14,
+        width:120,
+        marginTop:4,
+        height:40,
+        backgroundColor:'#4a81f8'
+    },
   btnSend:{
-    backgroundColor:'#4a81f8'
+    backgroundColor:'#4a81f8',
   },
   mt:{
     marginTop:50,
