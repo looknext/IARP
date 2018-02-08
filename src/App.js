@@ -6,11 +6,14 @@ import { StackNavigator, DrawerNavigator } from "react-navigation";
 
 // import Main from "./screens/main/";
 
-import Main from "./screens/main/card-showcase";
+import Main from "./screens/main/tellme";
+import Localtion from "./screens/main/localtion";
 
 import Home from "./screens/home/";
 import Login from "./screens/login/";
 import ForgetPwd from "./screens/forgetpwd/";
+import ForgetPwdReset from "./screens/forgetpwd/reset";
+
 import Reset from "./screens/reset/";
 import Create from "./screens/create/";
 import Vertification from "./screens/vertification/";
@@ -30,14 +33,19 @@ const Drawer = DrawerNavigator(
               drawerLockMode:'locked-closed'//hide header if not needed so whole screen slide
 
           },},
+
       Main: { screen: Main},
+       Localtion: { screen: Localtion},
+
+      Reset: { screen: Reset},
+
       ForgetPwd: {screen:ForgetPwd,
           navigationOptions: {
               gesturesEnabled :false,
               drawerLockMode:'locked-closed'//hide header if not needed so whole screen slide
 
           }},
-      Reset:{screen:Reset,
+      ForgetPwdReset:{screen:ForgetPwdReset,
           navigationOptions: {
               gesturesEnabled :false,
               drawerLockMode:'locked-closed'//hide header if not needed so whole screen slide

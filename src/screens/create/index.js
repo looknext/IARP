@@ -9,6 +9,8 @@ export default class Create extends Component {
         super(props);
         this.userName = "";
         this.password = "";
+        this.cpassword = "";
+
         this.caheCode = "";
         this.state = {
             timerCount: this.props.timerCount || 60,
@@ -68,6 +70,11 @@ export default class Create extends Component {
                 text: "password is null!",
                 buttonText: "Okay"
             })
+        }else if (this.password!=this.cpassword){
+            Toast.show({
+                text: "The confirm password is different from the password!",
+                buttonText: "Okay"
+            })
         }else if (this.caheCode.length!=4){
             Toast.show({
                 text: "caheCode length is not four!",
@@ -96,7 +103,21 @@ export default class Create extends Component {
                     //     alert(k);
                     //     alert(reslut[k]);
                     // }
-                    alert(responseText.message);
+                    if(responseText.message=="101"){
+                        sorage._sava("sessionid",responseText.sessionid);
+                        sorage._sava("userid",responseText.userid);
+                        this.props.navigation.navigate("CompleteInfo")
+                    }else if(responseText.message=="201"){
+                        Toast.show({
+                            text: "Wrong userName!",
+                            buttonText: "Okay"
+                        })
+                    }else if(responseText.message=="202"){
+                        Toast.show({
+                            text: "Wrong password!",
+                            buttonText: "Okay"
+                        })
+                    }
                 }).catch(function (err) {
                 alert(err);
                 //错误处理
@@ -133,8 +154,14 @@ export default class Create extends Component {
               <Input
                   onPress={()=>{
                       this.setState({untext:'Useless Multiline Placeholder'})}}
-                  onChangeText={(text) => {this.password = text;  }} placeholder="Password" style={style.input} />
+                  onChangeText={(text) => {this.password = text;  }} secureTextEntry  placeholder="Password" style={style.input} />
           </Item>
+              <Item style={style.ItemStyle}>
+                  <Input
+                      onPress={()=>{
+                          this.setState({untext:'Useless Multiline Placeholder'})}}
+                      onChangeText={(text) => {this.cpassword = text;  }} secureTextEntry placeholder="Confirm Password" style={style.input} />
+              </Item>
               <Item style={style.ItemStyle}>
               <Input
                   onPress={()=>{
@@ -188,7 +215,7 @@ export default class Create extends Component {
                       <Text>{this.state.timerTitle}</Text>
                   </Button>
               </Item>
-            <Button block style={style.btn}  onPress={() =>this.onPressaddUser()}>
+            <Button block style={style.btn}  onPress={() =>this.props.navigation.navigate('CompleteInfo')}>
             <Text>Next</Text>
           </Button>
           </Form>

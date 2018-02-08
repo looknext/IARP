@@ -5,6 +5,7 @@ import android.app.Application;
 import com.looknext.ai2v.BuildConfig;
 
 import com.facebook.react.ReactApplication;
+import com.react.arron.speech.speechModulePackage;
 import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
 import com.react.arron.speech.speechModulePackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -36,6 +37,7 @@ public class MainApplication extends Application implements ReactApplication {
 
           new VoiceReactPackage(),
           new MainReactPackage(),
+            new speechModulePackage(),
             new RNBackgroundFetchPackage(),
             new RNDeviceInfo(),
             new RNBackgroundGeolocation(),

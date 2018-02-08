@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Image, Dimensions,StyleSheet,View} from "react-native";
+import { Image, Dimensions,StyleSheet,View,ImageBackground} from "react-native";
 import {Container,Header,Title,Content,Button,Icon,Card,CardItem,Text,Thumbnail,Left,Right,Body,Footer,Input,Item} from "native-base";
 import style from "../style";
 const deviceWidth = Dimensions.get("window").width;
-const logo = require("../img/logo.jpg");
+const logo = require("../img/user.jpg");
+const chatBg = require("../../../assets/chat.jpg");
 const cardImage = require("../../../assets/drawer-cover.png");
 const buttonIocn='logo-github';
 let Geolocation = require('Geolocation');  //要引用定位连接，否则会提示找不到对象，很多资料都没说到这一点。
@@ -40,7 +41,7 @@ class NHCardShowcase extends Component {
         会提示未定义函数或找不到对像，错误位置为this.setState
         */
         Geolocation.getCurrentPosition(val => {
-
+          
             let formData = new FormData();
             formData.append("sessionid",sessionId);
             formData.append("userid",userId);
@@ -108,7 +109,7 @@ class NHCardShowcase extends Component {
             // },
         }).then(ret => {
 
-            callBack( ret);
+            callBack( ret)
 
             return ret;
         }).catch(err => {
@@ -117,7 +118,7 @@ class NHCardShowcase extends Component {
             console.log(err.message);
             switch (err.name) {
                 case 'NotFoundError':
-                    this.props.navigation.navigate("Login");
+                    this.props.navigation.navigate("Login")
                     break;
                 case 'ExpiredError':
                     // TODO
@@ -157,6 +158,7 @@ class NHCardShowcase extends Component {
   render() {
     return (
       <Container style={styles.container}>
+        <ImageBackground source={chatBg} style={styles.imageContainer}>
         <Header style={style.bgc}>
           <Left>
               <Button transparent
@@ -174,7 +176,7 @@ class NHCardShowcase extends Component {
           <View style={styles.pos}>
              <View>
               <View style={[styles.chatAnswer,styles.mb]}>
-                <Image source={require('../img/logo.jpg')} style={[styles.chatImg,styles.inlinl]}></Image>
+                <Image source={require('../img/user.jpg')} style={[styles.chatImg,styles.inlinl]}></Image>
                 <View style={[styles.inlin,styles.pl]}>
                   <Text style={[styles.chatText,styles.textl]}>May I help you?</Text>
                 </View>
@@ -182,7 +184,7 @@ class NHCardShowcase extends Component {
              </View>
              <View style={styles.boxpl}>
               <View style={[styles.chatQuestion,styles.mb]}>
-                <Image source={require('../img/logo.jpg')} style={[styles.chatImg,styles.inlinr]}></Image>
+                <Image source={require('../img/user.jpg')} style={[styles.chatImg,styles.inlinr]}></Image>
                 <View style={[styles.inlin,styles.pr]}>
                   <Text style={[styles.chatText,styles.textr]}>What it is the weather today?</Text>
                 </View>
@@ -190,7 +192,7 @@ class NHCardShowcase extends Component {
              </View>
              <View>
               <View style={[styles.chatAnswer,styles.mb]}>
-                <Image source={require('../img/logo.jpg')} style={[styles.chatImg,styles.inlinl]}></Image>
+                <Image source={require('../img/user.jpg')} style={[styles.chatImg,styles.inlinl]}></Image>
                 <View style={[styles.inlin,styles.pl]}>
                   <Text style={[styles.chatText,styles.textl]}>It is sunny.</Text>
                 </View>
@@ -198,7 +200,7 @@ class NHCardShowcase extends Component {
              </View>
              <View style={styles.boxpl}>
               <View style={[styles.chatQuestion,styles.mb]}>
-                <Image source={require('../img/logo.jpg')} style={[styles.chatImg,styles.inlinr]}></Image>
+                <Image source={require('../img/user.jpg')} style={[styles.chatImg,styles.inlinr]}></Image>
                 <View style={[styles.inlin,styles.pr]}>
                   <Text style={[styles.chatText,styles.textr]}>What can I do for you?A merry heart goes all the way.</Text>
                 </View>
@@ -228,19 +230,21 @@ class NHCardShowcase extends Component {
         <Item rounded style={styles.say}>
           <Input placeholder='Si noe......' style={styles.inptxt}/>
         </Item>
+        </ImageBackground>
       </Container>
     );
   }
 }
 export default NHCardShowcase;
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#ccc",
+  imageContainer: {
+    flex: 1,
+    width: null,
+    height: null
   },
   cont:{
     paddingHorizontal:15,
     paddingVertical:20,
-    backgroundColor:'#ccc',
     paddingBottom:320,
   },
   mb:{
@@ -260,25 +264,26 @@ const styles = StyleSheet.create({
     marginBottom: 7
   },
   inlinl:{
-    justifyContent:'center',
+    justifyContent:'center',  
     alignItems:'center',
   },
   inlinr:{
     alignItems:'flex-end',
-    justifyContent:'center',
+    justifyContent:'center',  
   },
   chatAnswer:{
     paddingRight:55,
-    flexDirection:'row',
+    flexDirection:'row',  
   },
   chatQuestion:{
-    flexDirection:'row-reverse',
+    flexDirection:'row-reverse', 
   },
   chatText:{
     borderRadius:15,
     paddingVertical:8,
     paddingHorizontal:12,
     color:'#fff',
+    overflow:'hidden'
   },
   textl:{
     backgroundColor:'#4286f3',

@@ -42,9 +42,15 @@ class CompleteInfo extends Component {
                 this.setState({untext:'Useless Multiline Placeholder'})}}
               onChangeText={(text) => {this.userName = text;  }} placeholder="Confirm" style={style.input} />
             </Item>
-            <Button block style={style.btn}  onPress={() =>this.props.navigation.navigate('Login')}>
-            <Text>Next</Text>
+
+              <Button block style={style.btn}  onPress={() =>this.props.navigation.navigate('Login')}>
+
+            <Text>Submit</Text>
           </Button>
+              <Button block style={style.btn}  onPress={() =>this.props.navigation.navigate('Main')}>
+
+                  <Text>Skip</Text>
+              </Button>
           </Form>
         </Content>
       </Container>

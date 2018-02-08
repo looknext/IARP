@@ -3,15 +3,18 @@ export default {
     backgroundColor: "#FFF",
   },
   bgc:{
-    backgroundColor:'#4a81f8',
-    shadowColor:'#000'
+    backgroundColor:'#fff',
+    shadowColor:'#000',
+    // shadowOffset:{h:10,w:10},
+    shadowRadius:3,
+    // shadowOpacity:0.8,
   },
   fontc:{
     color:'#999'
   },
   imgSize:{
-    width:250,
-    height:250
+    width:107,
+    height:111
   },
   text:{
       textAlign:'center',
@@ -27,16 +30,8 @@ export default {
    btn:{
     margin:30,
     borderRadius:15,
-    backgroundColor:'#4a81f8'
+    backgroundColor:'#4a81f8',
   },
-    btnV:{
-        margin:0,
-        borderRadius:14,
-        width:120,
-        marginTop:4,
-        height:40,
-        backgroundColor:'#4a81f8'
-    },
   btnSend:{
     backgroundColor:'#4a81f8',
   },

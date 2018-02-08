@@ -9,14 +9,14 @@ import {
 
 import DeviceInfo from 'react-native-device-info';
 
-import { 
+import {
   Container,
   Button, Icon,
   Text,
   Header, Footer, Title,
-  Content, 
+  Content,
   Left, Body, Right,
-  Switch 
+  Switch
 } from 'native-base';
 
 
@@ -32,7 +32,7 @@ import {
 import BackgroundGeolocation from "react-native-background-geolocation";
 const TRACKER_HOST = 'http://192.168.0.95:8080/Evolution-server/server/gps/localtion';
 
-export default class HelloWorld extends Component<{}> {
+export default class Localtion extends Component<{}> {
 
   constructor(props) {
     super(props);
@@ -49,16 +49,16 @@ export default class HelloWorld extends Component<{}> {
 
   componentDidMount() {
     // Step 1:  Listen to events:
-    BackgroundGeolocation.on('location', this.onLocation.bind(this));    
+    BackgroundGeolocation.on('location', this.onLocation.bind(this));
     BackgroundGeolocation.on('motionchange', this.onMotionChange.bind(this));
     BackgroundGeolocation.on('activitychange', this.onActivityChange.bind(this));
     BackgroundGeolocation.on('providerchange', this.onProviderChange.bind(this));
     BackgroundGeolocation.on('powersavechange', this.onPowerSaveChange.bind(this));
     BackgroundGeolocation.on('http', this.onHttp.bind(this));
     BackgroundGeolocation.on('heartbeat', this.onHeartbeat.bind(this));
-    
+
     // Step 2:  #configure:
-    BackgroundGeolocation.configure({      
+    BackgroundGeolocation.configure({
       distanceFilter: 10,
       stopOnTerminate: false,
         // 单位分钟
@@ -86,7 +86,7 @@ export default class HelloWorld extends Component<{}> {
       this.setState({
         enabled: state.enabled,
         isMoving: state.isMoving
-      });      
+      });
     });
       this.onClickChangePace;
   }
@@ -121,7 +121,7 @@ export default class HelloWorld extends Component<{}> {
   onProviderChange(event) {
     console.log('[event] providerchange', event);
     this.addEvent('providerchange', new Date(), event);
-  }  
+  }
   /**
   * @event powersavechange
   */
@@ -185,9 +185,9 @@ export default class HelloWorld extends Component<{}> {
   */
   addEvent(name, date, object) {
     let event = {
-      key: this.eventId++, 
-      name: name, 
-      timestamp: date.toLocaleTimeString(), 
+      key: this.eventId++,
+      name: name,
+      timestamp: date.toLocaleTimeString(),
       json: JSON.stringify(object, null, 2)
     };
     let rs = this.state.events;
@@ -209,13 +209,15 @@ export default class HelloWorld extends Component<{}> {
     return (
       <Container style={styles.container}>
         <Header style={styles.header}>
-          <Left>
-            <Button small transparent >
-              <Icon active name="arrow-back" style={{color: '#000'}}/>
-            </Button>
-          </Left>
+            <Left>
+                <Button transparent
+                        onPress={() => this.props.navigation.navigate("DrawerOpen")}
+                >
+                    <Icon name="menu" />
+                </Button>
+            </Left>
           <Body>
-            <Title style={styles.title}>Hello World</Title>
+            <Title style={styles.title}>Record Location</Title>
           </Body>
           <Right>
             <Switch onValueChange={() => this.onToggleEnabled()} value={this.state.enabled} />
@@ -225,7 +227,7 @@ export default class HelloWorld extends Component<{}> {
         <Content style={styles.content}>
           <View style={styles.list}>
             {this.renderEvents()}
-          </View>          
+          </View>
         </Content>
 
         <Footer style={styles.footer}>
@@ -257,7 +259,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#272727'
   },
   header: {
-    backgroundColor: '#fedd1e'
+    backgroundColor: '#EFEFEF'
   },
   title: {
     color: '#000'
@@ -266,7 +268,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   itemHeader: {
-    backgroundColor: '#D5B601',
+    backgroundColor: '#EFEFEF',
     padding: 5
   },
   eventName: {
@@ -282,8 +284,8 @@ const styles = StyleSheet.create({
     color: '#e6db74'
   },
   footer: {
-    backgroundColor: '#fedd1e',
-    paddingLeft: 10, 
+    backgroundColor: '#EFEFEF',
+    paddingLeft: 10,
     paddingRight: 10
   },
   footerBody: {

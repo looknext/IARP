@@ -14,7 +14,7 @@ class ForgetPwd extends Component {
         sorage._getStorage();
         let formData = new FormData();
         formData.append("phone", this.userName);
-        let url = "http://192.168.0.169:8080/Evolution-server/server/login/phone";
+        let url = "http://192.168.0.95:8080/Evolution-server/server/login/phone";
         fetch(url, {
             body: formData,
             method: 'POST',
@@ -131,7 +131,7 @@ class ForgetPwd extends Component {
                 <Text style={{width:120,textAlign:'center',}}>{this.state.timerTitle}</Text>
                </Button>
             </Item>
-            <Button block style={style.btn}  onPress={() =>this.props.navigation.navigate('Create')}>
+            <Button block style={style.btn}  onPress={() =>this.props.navigation.navigate('Reset')}>
             <Text> Reset your password</Text>
           </Button>
           </Form>

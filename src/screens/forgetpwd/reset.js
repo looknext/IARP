@@ -10,13 +10,11 @@ class Reset extends Component {
     return (
       <Container style={style.container}>
         <Header style={style.bgc}>
-            <Left>
-                <Button transparent
-                        onPress={() => this.props.navigation.navigate("DrawerOpen")}
-                >
-                    <Icon name="menu" />
-                </Button>
-            </Left>
+          <Left>
+            <Button transparent onPress={() => this.props.navigation.goBack()}>
+              <Icon name="arrow-back" />
+            </Button>
+          </Left>
           <Body>
             <Title>Reset Password</Title>
           </Body>
@@ -27,12 +25,7 @@ class Reset extends Component {
             <Text style={{textAlign:'center',marginBottom:40}}>
               <Image source={require('../img/logo.jpg')} style={style.imgSize}/>
             </Text>
-              <Item style={style.ItemStyle}>
-                  <Input
-                      onPress={()=>{
-                          this.setState({untext:'Useless Multiline Placeholder'})}}
-                      onChangeText={(text) => {this.userName = text;  }} placeholder="Old Password" style={style.input} />
-              </Item>
+
             <Item style={style.ItemStyle}>
               <Input
               onPress={()=>{

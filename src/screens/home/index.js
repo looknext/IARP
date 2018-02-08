@@ -81,7 +81,7 @@ getSession(key){
           <H3 style={styles.text}></H3>
           <View style={{ marginTop: 8 }} />
 
-          <H3 style={styles.text}>App</H3>
+          <H3 style={styles.text}>IARP</H3>
           <View style={{ marginTop: 8 }} />
         </View>
           <View style={styles.logoContainer}>
